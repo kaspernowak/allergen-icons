@@ -2,6 +2,14 @@
   "name": "@kaspernowak/allergen-icons",
   "version": "0.1.0",
   "description": "Framework-neutral allergen icon assets, metadata, and raw SVGs.",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kaspernowak/allergen-icons.git"
+  },
+  "homepage": "https://github.com/kaspernowak/allergen-icons#readme",
+  "bugs": {
+    "url": "https://github.com/kaspernowak/allergen-icons/issues"
+  },
   "type": "module",
   "license": "MIT",
   "sideEffects": false,

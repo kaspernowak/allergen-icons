@@ -1,6 +1,14 @@
 {
   "name": "allergen-icons-workspace",
   "private": true,
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kaspernowak/allergen-icons.git"
+  },
+  "homepage": "https://github.com/kaspernowak/allergen-icons#readme",
+  "bugs": {
+    "url": "https://github.com/kaspernowak/allergen-icons/issues"
+  },
   "type": "module",
   "packageManager": "pnpm@10.6.0",
   "scripts": {
