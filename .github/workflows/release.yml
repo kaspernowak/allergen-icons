@@ -35,11 +35,14 @@ jobs:
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
+      - name: Verify workspace
+        run: pnpm run verify
+
       - name: Create release PR or publish
         uses: changesets/action@v1
         with:
           version: pnpm changeset version
-          publish: pnpm run verify && pnpm changeset publish
+          publish: pnpm changeset publish
           commit: 'chore: release packages'
           title: 'chore: release packages'
         env:
