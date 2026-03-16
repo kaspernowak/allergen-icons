@@ -1,0 +1,12 @@
+{
+  "extends": "../../tsconfig.base.json",
+  "compilerOptions": {
+    "types": ["node"],
+    "baseUrl": ".",
+    "paths": {
+      "@kaspernowak/allergen-icons": ["../allergen-icons/src/index.ts"],
+      "@kaspernowak/allergen-icons/*": ["../allergen-icons/src/*"]
+    }
+  },
+  "include": ["src/**/*.ts", "scripts/**/*.mjs", "test/**/*.ts"]
+}

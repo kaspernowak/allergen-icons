@@ -1,0 +1,49 @@
+{
+  "name": "@kaspernowak/allergen-icons",
+  "version": "0.1.0",
+  "description": "Framework-neutral allergen icon assets, metadata, and raw SVGs.",
+  "type": "module",
+  "license": "MIT",
+  "sideEffects": false,
+  "files": ["dist", "LICENSE", "NOTICE"],
+  "publishConfig": {
+    "access": "public"
+  },
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "default": "./dist/index.js"
+    },
+    "./collections": {
+      "types": "./dist/collections/index.d.ts",
+      "import": "./dist/collections/index.js",
+      "default": "./dist/collections/index.js"
+    },
+    "./collections/*": {
+      "types": "./dist/collections/*/index.d.ts",
+      "import": "./dist/collections/*/index.js",
+      "default": "./dist/collections/*/index.js"
+    },
+    "./manifest": {
+      "types": "./dist/manifest.d.ts",
+      "import": "./dist/manifest.js",
+      "default": "./dist/manifest.js"
+    },
+    "./icons/*": {
+      "types": "./dist/icons/*.d.ts",
+      "import": "./dist/icons/*.js",
+      "default": "./dist/icons/*.js"
+    },
+    "./svg/*": "./dist/svg/*"
+  },
+  "scripts": {
+    "generate": "node scripts/generate-collections.mjs",
+    "build": "node scripts/generate-collections.mjs && node scripts/clean.mjs && tsc -p tsconfig.build.json && node scripts/postbuild.mjs",
+    "typecheck": "node scripts/generate-collections.mjs && tsc -p tsconfig.json --noEmit"
+  },
+  "keywords": ["allergen", "icons", "svg", "vue", "accessibility"]
+}

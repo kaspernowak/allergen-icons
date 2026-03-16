@@ -1,0 +1,33 @@
+{
+  "name": "allergen-icons-workspace",
+  "private": true,
+  "type": "module",
+  "packageManager": "pnpm@10.6.0",
+  "scripts": {
+    "changeset": "changeset",
+    "sync:upstream": "node scripts/sync-upstream.mjs",
+    "sync:erudus": "node scripts/sync-erudus.mjs",
+    "import:collection": "node scripts/import-collection.mjs",
+    "build": "pnpm -r build",
+    "build:from-upstream": "pnpm run sync:upstream && pnpm run build",
+    "typecheck": "pnpm -r typecheck",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "verify": "pnpm run build && pnpm run test && pnpm run typecheck",
+    "version-packages": "changeset version",
+    "release": "pnpm run verify && changeset publish"
+  },
+  "devDependencies": {
+    "@changesets/cli": "^2.29.2",
+    "@types/node": "^22.13.10",
+    "@vue/server-renderer": "^3.5.13",
+    "@vue/test-utils": "^2.4.6",
+    "jsdom": "^28.1.0",
+    "svgson": "^5.3.1",
+    "svgo": "^3.3.2",
+    "typescript": "^5.8.2",
+    "vitest": "^3.0.8",
+    "vue": "^3.5.13",
+    "vue-tsc": "^2.2.8"
+  }
+}

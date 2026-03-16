@@ -1,0 +1,9 @@
+allergen-icons
+Copyright (c) 2026 Kasper Nowak
+
+This package contains a framework-neutral extraction of icons from
+`dsanchez07/react-allergens` and `Erudus/erudus-icons`, both MIT-licensed.
+Original project and copyright notices are preserved in this repository.
+
+Original project: https://github.com/dsanchez07/react-allergens
+Original project: https://github.com/Erudus/erudus-icons

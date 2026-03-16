@@ -1,0 +1,37 @@
+import type { AllergenIconData } from '../../types'
+
+const CircleFishIcon = {
+  "name": "circle-fish",
+  "collectionId": "erudus",
+  "collectionLabel": "Erudus",
+  "componentName": "CircleFishIcon",
+  "title": "Circle Fish",
+  "fileName": "circle-fish.svg",
+  "importPath": "@kaspernowak/allergen-icons/icons/erudus/CircleFishIcon",
+  "svgPath": "@kaspernowak/allergen-icons/svg/erudus/circle-fish.svg",
+  "viewBox": "0 0 64 64",
+  "defaultPrimaryColor": "#000000",
+  "defaultSecondaryColor": "#000000",
+  "nodes": [
+    {
+      "tag": "path",
+      "attrs": {
+        "d": "M20.5 20.6c-9.1 3.8-15 11.9-15 11.9 0 .1 4 4.7 8.2 3.6.2-.1.2.5.1.7-.3.4-.9.4-1.4.4-2.5 0-5.2-2.1-6.6-3.3 1.9 2.3 7.2 8 14 11.1 5.2-8.2 1.5-21.7.7-24.4M15 33.3c-1.3 0-2.3-1-2.3-2.2s1-2.2 2.3-2.2 2.3 1 2.3 2.2c-.1 1.2-1.1 2.2-2.3 2.2"
+      }
+    },
+    {
+      "tag": "path",
+      "attrs": {
+        "d": "M49.9 29.8c-1.8-1.9-4.3-4.2-7.4-6.3-.6-.4-.9-1.6-3.6-3.6-4.2-3.2-4.5-2.9-8.4-3.1-.3 0-1.3 2-1.6 2-2.6 0-5 .5-7.3 1.4.8 2.5 4.7 16.4-.7 25.3 2.1.8 4.2 1.4 6.5 1.6.5 0 1 .1 1.5.1.8 0 1.5 0 2.3-.1 1.2-.1 2.4-.4 3.6-.8 7.1-2.2 12.9-7.6 15.9-10.8 0 0 5.3 7.4 7.2 6.6 2.1-.9-.6-5.4-.8-10-.2-4.4 2.1-8.8.7-9.6-2.1-1.3-7.9 7.3-7.9 7.3"
+      }
+    },
+    {
+      "tag": "path",
+      "attrs": {
+        "d": "M32 3c16 0 29 13 29 29S48 61 32 61 3 48 3 32 16 3 32 3m0-3C14.3 0 0 14.3 0 32s14.3 32 32 32 32-14.3 32-32S49.7 0 32 0"
+      }
+    }
+  ]
+} as const satisfies AllergenIconData
+
+export default CircleFishIcon

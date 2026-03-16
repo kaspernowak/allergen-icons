@@ -1,0 +1,49 @@
+{
+  "name": "@kaspernowak/allergen-icons-vue",
+  "version": "0.1.0",
+  "description": "Vue 3 allergen icon components generated from @kaspernowak/allergen-icons core assets.",
+  "type": "module",
+  "license": "MIT",
+  "sideEffects": false,
+  "files": ["dist", "LICENSE", "NOTICE"],
+  "publishConfig": {
+    "access": "public"
+  },
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "default": "./dist/index.js"
+    },
+    "./collections": {
+      "types": "./dist/collections/index.d.ts",
+      "import": "./dist/collections/index.js",
+      "default": "./dist/collections/index.js"
+    },
+    "./collections/*": {
+      "types": "./dist/collections/*/index.d.ts",
+      "import": "./dist/collections/*/index.js",
+      "default": "./dist/collections/*/index.js"
+    },
+    "./icons/*": {
+      "types": "./dist/icons/*.d.ts",
+      "import": "./dist/icons/*.js",
+      "default": "./dist/icons/*.js"
+    }
+  },
+  "peerDependencies": {
+    "vue": ">=3.4 <4"
+  },
+  "dependencies": {
+    "@kaspernowak/allergen-icons": "workspace:*"
+  },
+  "scripts": {
+    "generate": "node scripts/generate.mjs",
+    "build": "node scripts/generate.mjs && node scripts/clean.mjs && tsc -p tsconfig.build.json",
+    "typecheck": "node scripts/generate.mjs && vue-tsc -p tsconfig.json --noEmit"
+  },
+  "keywords": ["allergen", "icons", "vue", "svg", "accessibility"]
+}

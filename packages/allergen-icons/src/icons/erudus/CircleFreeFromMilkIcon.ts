@@ -1,0 +1,48 @@
+import type { AllergenIconData } from '../../types'
+
+const CircleFreeFromMilkIcon = {
+  "name": "circle-free-from-milk",
+  "collectionId": "erudus",
+  "collectionLabel": "Erudus",
+  "componentName": "CircleFreeFromMilkIcon",
+  "title": "Circle Free From Milk",
+  "fileName": "circle-free-from-milk.svg",
+  "importPath": "@kaspernowak/allergen-icons/icons/erudus/CircleFreeFromMilkIcon",
+  "svgPath": "@kaspernowak/allergen-icons/svg/erudus/circle-free-from-milk.svg",
+  "viewBox": "0 0 64 64",
+  "defaultPrimaryColor": "#000000",
+  "defaultSecondaryColor": "#000000",
+  "nodes": [
+    {
+      "tag": "defs",
+      "children": [
+        {
+          "tag": "style"
+        }
+      ]
+    },
+    {
+      "tag": "path",
+      "attrs": {
+        "d": "M20.08 51.15v-6.84h1.93l1.84 3.82 1.84-3.82h1.88v6.84H25.9v-4.28l-1.36 2.81h-1.4l-1.37-2.83v4.29H20.1Zm8.9 0v-6.84h1.83v6.84zm3.26 0v-6.84h1.83v5.37h2.9v1.47zm5.75 0v-6.84h1.8v2.81l2.33-2.81h2.17l-2.9 3.27 3.18 3.57h-2.35l-2.43-2.93v2.93zm-17.63 9.92v-6.84h4.66v1.43h-2.9v1.49h2.51v1.43h-2.51v2.48h-1.76Zm5.74 0v-6.84h2.49c.84 0 1.5.21 1.97.62s.71.98.71 1.71c0 .39-.09.74-.28 1.06q-.285.465-.72.78l1.67 2.67h-1.99l-1.2-2.2h-.92v2.2zm2.25-5.52h-.52v2h.5c.79 0 1.18-.34 1.18-1.01s-.39-.99-1.16-.99m4.49 5.52v-6.84h4.76v1.38h-3.1v1.31h2.73v1.38H34.5v1.4h3.22v1.38h-4.89Zm6.11 0v-6.84h4.76v1.38h-3.1v1.31h2.73v1.38h-2.73v1.4h3.22v1.38h-4.89ZM32 1.69c8.99 0 16.31 7.32 16.31 16.31S40.99 34.31 32 34.31 15.69 26.99 15.69 18 23.01 1.69 32 1.69M32 0c-9.94 0-18 8.06-18 18s8.06 18 18 18 18-8.06 18-18S41.94 0 32 0",
+        "class": "erudus-circle-free-from-milk-__cls-1"
+      }
+    },
+    {
+      "tag": "path",
+      "attrs": {
+        "d": "M43.68 31.5 19.05 6.79l1.27-1.17 24.63 24.72z",
+        "class": "erudus-circle-free-from-milk-__cls-1"
+      }
+    },
+    {
+      "tag": "path",
+      "attrs": {
+        "d": "M33.96 12.52c-.06-.12-1.29-2.62-2.51-4.15.27-.16.46-.5.46-.89 0-.54-.36-.98-.8-.98h-5.67c-.44 0-.8.44-.8.98 0 .39.19.73.46.89-1.22 1.53-2.45 4.03-2.51 4.15l-.07.15v14.11c0 1.45 1.27 2.62 2.84 2.62h5.84c1.56 0 2.84-1.18 2.84-2.62V12.67zm-5.77.32c-2 1.39-4.84 0-4.84 0s1.47-3.01 2.72-4.37h4.4c1.25 1.37 2.72 4.37 2.72 4.37s-3.01-1.39-5.01 0Zm6.19 7.74.7 8.59h5.7l.7-8.59h-7.11Zm3.61 2.43c-.83.52-2.91-.01-2.91-.01l-.16-1.95h6.03l-.16 1.97s-1.96-.54-2.8-.01",
+        "class": "erudus-circle-free-from-milk-__cls-1"
+      }
+    }
+  ]
+} as const satisfies AllergenIconData
+
+export default CircleFreeFromMilkIcon
