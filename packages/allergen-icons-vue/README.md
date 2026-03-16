@@ -70,6 +70,100 @@ The default `react-allergens` set is duotone in nature, so `secondaryColor` cont
 
 Monochrome collections such as many Erudus icons simply do not consume the detail channel. In those cases, `color` is the only paint channel that affects the rendered paths.
 
+## Suggested theme defaults
+
+If you want a ready-to-use starting point for the default `react-allergens` set, a dark neutral badge color works well while still preserving full control:
+
+- **Suggested badge color**: `#334155`
+- **Suggested detail strategy**: leave `secondaryColor` unset so each icon keeps its built-in contrast color
+
+Because the primary channel uses `currentColor`, you can apply that badge color once at the app, layout, or component-group level.
+
+### Vue + CSS
+
+```css
+:root {
+  --allergen-icon-primary: #334155;
+}
+
+.allergen-icons-theme {
+  color: var(--allergen-icon-primary);
+}
+```
+
+```vue
+<script setup lang="ts">
+import { FishIcon, MilkIcon, PeanutIcon } from '@kaspernowak/allergen-icons-vue'
+</script>
+
+<template>
+  <div class="allergen-icons-theme flex items-center gap-2">
+    <FishIcon class="size-5" aria-label="Contains fish" />
+    <MilkIcon class="size-5" aria-label="Contains milk" />
+    <PeanutIcon class="size-5" aria-label="Contains peanuts" />
+  </div>
+</template>
+```
+
+### Tailwind 4
+
+```css
+@import "tailwindcss";
+
+@theme {
+  --color-allergen-badge: #334155;
+}
+```
+
+```vue
+<script setup lang="ts">
+import { FishIcon, MilkIcon, PeanutIcon } from '@kaspernowak/allergen-icons-vue'
+</script>
+
+<template>
+  <div class="flex items-center gap-2 text-allergen-badge">
+    <FishIcon class="size-5" aria-label="Contains fish" />
+    <MilkIcon class="size-5" aria-label="Contains milk" />
+    <PeanutIcon class="size-5" aria-label="Contains peanuts" />
+  </div>
+</template>
+```
+
+### Tailwind 3
+
+```ts
+import type { Config } from 'tailwindcss'
+
+export default {
+  content: ['./index.html', './src/**/*.{vue,ts,tsx}'],
+  theme: {
+    extend: {
+      colors: {
+        allergen: {
+          badge: '#334155',
+        },
+      },
+    },
+  },
+} satisfies Config
+```
+
+```vue
+<script setup lang="ts">
+import { FishIcon, MilkIcon, PeanutIcon } from '@kaspernowak/allergen-icons-vue'
+</script>
+
+<template>
+  <div class="flex items-center gap-2 text-allergen-badge">
+    <FishIcon class="size-5" aria-label="Contains fish" />
+    <MilkIcon class="size-5" aria-label="Contains milk" />
+    <PeanutIcon class="size-5" aria-label="Contains peanuts" />
+  </div>
+</template>
+```
+
+If you want a single shared detail color as well, pass `secondaryColor` from your own wrapper component or shared prop object. Leaving it unset is the easiest way to keep the source icon contrast while still theming the badge color globally.
+
 ## Tree shaking
 
 Only the icons you import are included in the bundle.

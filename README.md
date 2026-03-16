@@ -89,6 +89,44 @@ For the default `react-allergens` collection, icons are typically duotone badges
 
 For collections like `erudus`, many icons are monochrome. Those icons simply consume the primary channel and ignore the detail channel.
 
+## Vue theming quickstart
+
+Because the Vue package uses `currentColor` for the primary channel, you can set a shared badge color once and have every default `react-allergens` icon inherit it.
+
+Suggested starting point:
+
+- **Badge color**: `#334155`
+- **Detail color**: leave `secondaryColor` unset to keep the built-in contrast color for each icon
+
+Example with plain CSS:
+
+```css
+:root {
+  --allergen-icon-primary: #334155;
+}
+
+.allergen-icons-theme {
+  color: var(--allergen-icon-primary);
+}
+```
+
+```vue
+<template>
+  <div class="allergen-icons-theme flex items-center gap-2">
+    <FishIcon class="size-5" aria-label="Contains fish" />
+    <MilkIcon class="size-5" aria-label="Contains milk" />
+    <PeanutIcon class="size-5" aria-label="Contains peanuts" />
+  </div>
+</template>
+```
+
+For Tailwind-based setups:
+
+- **Tailwind 4**: define `--color-allergen-badge` in `@theme`, then use `text-allergen-badge`
+- **Tailwind 3**: add `allergen.badge` under `theme.extend.colors`, then use `text-allergen-badge`
+
+The full Vue examples live in [`packages/allergen-icons-vue/README.md`](./packages/allergen-icons-vue/README.md).
+
 ## Development
 
 ```bash
