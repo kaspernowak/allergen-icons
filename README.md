@@ -91,41 +91,19 @@ For collections like `erudus`, many icons are monochrome. Those icons simply con
 
 ## Vue theming quickstart
 
-Because the Vue package uses `currentColor` for the primary channel, you can set a shared badge color once and have every default `react-allergens` icon inherit it.
+If you want each icon to keep a specific default badge color in your app, the best pattern is a small Vue wrapper component that maps icon names to colors.
 
-Suggested starting point:
+Examples:
 
-- **Badge color**: `#334155`
-- **Detail color**: leave `secondaryColor` unset to keep the built-in contrast color for each icon
+- **Celery**: `#4cad3b`
+- **Gluten**: `#ee7440`
+- **Fish**: `#403b8a`
 
-Example with plain CSS:
+That approach gives you per-icon defaults while still allowing per-instance overrides through the existing `color` prop.
 
-```css
-:root {
-  --allergen-icon-primary: #334155;
-}
+Tailwind is optional here. It can be a source of color tokens, but the per-icon default decision itself is best handled in Vue because it depends on which icon component you render.
 
-.allergen-icons-theme {
-  color: var(--allergen-icon-primary);
-}
-```
-
-```vue
-<template>
-  <div class="allergen-icons-theme flex items-center gap-2">
-    <FishIcon class="size-5" aria-label="Contains fish" />
-    <MilkIcon class="size-5" aria-label="Contains milk" />
-    <PeanutIcon class="size-5" aria-label="Contains peanuts" />
-  </div>
-</template>
-```
-
-For Tailwind-based setups:
-
-- **Tailwind 4**: define `--color-allergen-badge` in `@theme`, then use `text-allergen-badge`
-- **Tailwind 3**: add `allergen.badge` under `theme.extend.colors`, then use `text-allergen-badge`
-
-The full Vue examples live in [`packages/allergen-icons-vue/README.md`](./packages/allergen-icons-vue/README.md).
+The full wrapper example and optional Tailwind 4 and Tailwind 3 token setups live in [`packages/allergen-icons-vue/README.md`](./packages/allergen-icons-vue/README.md).
 
 ## Development
 

@@ -70,66 +70,147 @@ The default `react-allergens` set is duotone in nature, so `secondaryColor` cont
 
 Monochrome collections such as many Erudus icons simply do not consume the detail channel. In those cases, `color` is the only paint channel that affects the rendered paths.
 
-## Suggested theme defaults
+## Per-icon default colors in Vue
 
-If you want a ready-to-use starting point for the default `react-allergens` set, a dark neutral badge color works well while still preserving full control:
+If you want `CeleryIcon` to always render in `#4cad3b`, `GlutenIcon` in `#ee7440`, and so on without repeating `color` everywhere, the best place to do that is in your app with a small wrapper component.
 
-- **Suggested badge color**: `#334155`
-- **Suggested detail strategy**: leave `secondaryColor` unset so each icon keeps its built-in contrast color
+That keeps this package flexible and `currentColor`-friendly by default, while still letting your Vue app define a single canonical palette for the default `react-allergens` set.
 
-Because the primary channel uses `currentColor`, you can apply that badge color once at the app, layout, or component-group level.
-
-### Vue + CSS
-
-```css
-:root {
-  --allergen-icon-primary: #334155;
-}
-
-.allergen-icons-theme {
-  color: var(--allergen-icon-primary);
-}
-```
+### Example wrapper component
 
 ```vue
 <script setup lang="ts">
-import { FishIcon, MilkIcon, PeanutIcon } from '@kaspernowak/allergen-icons-vue'
+import { computed, type Component } from 'vue'
+import {
+  CeleryIcon,
+  CrustaceanIcon,
+  EggIcon,
+  FishIcon,
+  GlutenIcon,
+  LupinIcon,
+  MilkIcon,
+  MolluscIcon,
+  MustardIcon,
+  NutsIcon,
+  PeanutIcon,
+  SesameIcon,
+  SoyaIcon,
+  SulphiteIcon,
+  type AllergenIconProps,
+} from '@kaspernowak/allergen-icons-vue'
+
+const iconComponents = {
+  celery: CeleryIcon,
+  crustacean: CrustaceanIcon,
+  egg: EggIcon,
+  fish: FishIcon,
+  gluten: GlutenIcon,
+  lupin: LupinIcon,
+  milk: MilkIcon,
+  mollusc: MolluscIcon,
+  mustard: MustardIcon,
+  nuts: NutsIcon,
+  peanut: PeanutIcon,
+  sesame: SesameIcon,
+  soya: SoyaIcon,
+  sulphite: SulphiteIcon,
+} as const
+
+const defaultColors = {
+  celery: '#4cad3b',
+  crustacean: '#00a1db',
+  egg: '#f39339',
+  fish: '#403b8a',
+  gluten: '#ee7440',
+  lupin: '#f6d24e',
+  milk: '#804330',
+  mollusc: '#03b2c7',
+  mustard: '#c69838',
+  nuts: '#cf4d51',
+  peanut: '#c57b4f',
+  sesame: '#a89a7b',
+  soya: '#009a4c',
+  sulphite: '#8d2f51',
+} as const
+
+type ReactAllergenIconName = keyof typeof iconComponents
+
+const props = defineProps<{
+  name: ReactAllergenIconName
+  color?: string
+  secondaryColor?: string
+  size?: AllergenIconProps['size']
+  title?: string
+}>()
+
+const resolvedIcon = computed<Component>(() => iconComponents[props.name])
+const resolvedColor = computed(() => props.color ?? defaultColors[props.name])
 </script>
 
 <template>
-  <div class="allergen-icons-theme flex items-center gap-2">
-    <FishIcon class="size-5" aria-label="Contains fish" />
-    <MilkIcon class="size-5" aria-label="Contains milk" />
-    <PeanutIcon class="size-5" aria-label="Contains peanuts" />
+  <component
+    :is="resolvedIcon"
+    :color="resolvedColor"
+    :secondary-color="secondaryColor"
+    :size="size"
+    :title="title"
+    v-bind="$attrs"
+  />
+</template>
+```
+
+### Usage
+
+```vue
+<script setup lang="ts">
+import AllergenBadgeIcon from './components/AllergenBadgeIcon.vue'
+</script>
+
+<template>
+  <div class="flex items-center gap-2">
+    <AllergenBadgeIcon name="celery" class="size-5" aria-label="Contains celery" />
+    <AllergenBadgeIcon name="gluten" class="size-5" aria-label="Contains gluten" />
+    <AllergenBadgeIcon name="peanut" class="size-5" aria-label="Contains peanuts" />
+
+    <AllergenBadgeIcon
+      name="peanut"
+      class="size-5"
+      color="#7c3aed"
+      aria-label="Peanut override"
+    />
   </div>
 </template>
 ```
 
-### Tailwind 4
+Leave `secondaryColor` unset if you want to preserve each icon's built-in contrast color. Pass it only when you want a custom detail color too.
+
+### Where Tailwind fits
+
+Tailwind is optional here. The per-icon default decision lives most naturally in Vue, because it depends on which component you render.
+
+If you already keep your design tokens in Tailwind, you can still use that setup by storing your allergen colors as CSS variables and referencing those variables in the `defaultColors` map.
+
+### Tailwind 4 tokens
 
 ```css
 @import "tailwindcss";
 
 @theme {
-  --color-allergen-badge: #334155;
+  --color-allergen-celery: #4cad3b;
+  --color-allergen-gluten: #ee7440;
+  --color-allergen-peanut: #c57b4f;
 }
 ```
 
-```vue
-<script setup lang="ts">
-import { FishIcon, MilkIcon, PeanutIcon } from '@kaspernowak/allergen-icons-vue'
-</script>
-
-<template>
-  <div class="flex items-center gap-2 text-allergen-badge">
-    <FishIcon class="size-5" aria-label="Contains fish" />
-    <MilkIcon class="size-5" aria-label="Contains milk" />
-    <PeanutIcon class="size-5" aria-label="Contains peanuts" />
-  </div>
-</template>
+```ts
+const defaultColors = {
+  celery: 'var(--color-allergen-celery)',
+  gluten: 'var(--color-allergen-gluten)',
+  peanut: 'var(--color-allergen-peanut)',
+} as const
 ```
 
-### Tailwind 3
+### Tailwind 3 tokens
 
 ```ts
 import type { Config } from 'tailwindcss'
@@ -140,7 +221,9 @@ export default {
     extend: {
       colors: {
         allergen: {
-          badge: '#334155',
+          celery: '#4cad3b',
+          gluten: '#ee7440',
+          peanut: '#c57b4f',
         },
       },
     },
@@ -148,21 +231,25 @@ export default {
 } satisfies Config
 ```
 
-```vue
-<script setup lang="ts">
-import { FishIcon, MilkIcon, PeanutIcon } from '@kaspernowak/allergen-icons-vue'
-</script>
-
-<template>
-  <div class="flex items-center gap-2 text-allergen-badge">
-    <FishIcon class="size-5" aria-label="Contains fish" />
-    <MilkIcon class="size-5" aria-label="Contains milk" />
-    <PeanutIcon class="size-5" aria-label="Contains peanuts" />
-  </div>
-</template>
+```css
+@layer base {
+  :root {
+    --allergen-color-celery: theme('colors.allergen.celery');
+    --allergen-color-gluten: theme('colors.allergen.gluten');
+    --allergen-color-peanut: theme('colors.allergen.peanut');
+  }
+}
 ```
 
-If you want a single shared detail color as well, pass `secondaryColor` from your own wrapper component or shared prop object. Leaving it unset is the easiest way to keep the source icon contrast while still theming the badge color globally.
+```ts
+const defaultColors = {
+  celery: 'var(--allergen-color-celery)',
+  gluten: 'var(--allergen-color-gluten)',
+  peanut: 'var(--allergen-color-peanut)',
+} as const
+```
+
+For most Vue apps, plain hex values or CSS variables in your wrapper component are the simplest option. Tailwind only needs to be involved if it is already your source of truth for color tokens.
 
 ## Tree shaking
 
